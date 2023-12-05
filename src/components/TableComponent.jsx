@@ -1,31 +1,22 @@
-import React, { Component } from "react";
+import React from "react";
 import ReactTable from "react-table";
 import { columns, data } from "./constants.jsx";
 
-class CustomComponent extends Component {
-  constructor(props) {
-    super(props);
-    this.tableRef = undefined;
-  }
+const CustomComponent = () => {
+  const tableRef = undefined;
 
-  render() {
-    const onClick = () => {
-      console.log(this.tableRef);
-    };
+  const onClick = () => {
+    console.log(tableRef);
+  };
 
-    return (
-      <>
-        <button type="button" onClick={onClick}>
-          Show react table ref
-        </button>
-        <ReactTable
-          data={data}
-          columns={columns}
-          ref={(input) => (this.tableRef = input)}
-        />
-      </>
-    );
-  }
-}
+  return (
+    <>
+      <button type="button" onClick={onClick}>
+        Show react table ref
+      </button>
+      <ReactTable data={data} columns={columns} ref={tableRef} />
+    </>
+  );
+};
 
 export default CustomComponent;
