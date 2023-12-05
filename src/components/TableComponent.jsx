@@ -3,27 +3,23 @@ import ReactTable from "react-table";
 import { columns, data } from "./constants.jsx";
 
 const CustomComponent = () => {
-  let tableRef = undefined;
+  let tableRef = React.useRef();
 
-  const { onClick } = useTable(tableRef);
+  const { onClick } = useTable(tableRef.current);
 
   return (
     <>
       <button type="button" onClick={onClick}>
         Show react table ref
       </button>
-      <ReactTable
-        data={data}
-        columns={columns}
-        ref={(input) => (tableRef = input)}
-      />
+      <ReactTable data={data} columns={columns} ref={tableRef} />
     </>
   );
 };
 
-const useTable = (NOT_REALLY_THE_SAME_REF_AS_IN_THE_CALLING_COMPONENT) => {
+const useTable = (REF_FROM_USE_REF) => {
   const onClick = () => {
-    console.log(NOT_REALLY_THE_SAME_REF_AS_IN_THE_CALLING_COMPONENT);
+    console.log(REF_FROM_USE_REF);
   };
 
   return { onClick };
